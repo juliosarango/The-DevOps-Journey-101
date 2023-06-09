@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api:    
+    image: jsarangoq/flask-api
+    restart: always
+    container_name: service-flask-app
+    hostname: service-flask-app
+    ports:
+      - 8000:8000
+    command: /start  
+
+  consumer:    
+    image: jsarangoq/consumer    
+    container_name: consumer
+    hostname: consumer
+    restart: always    
+    command: /start  
