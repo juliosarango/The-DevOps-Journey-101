@@ -5,14 +5,14 @@ from flask import Flask
 
 
 app = Flask(__name__)
-cache = redis.Redis(host='redis', port=6379)
+cache = redis.Redis(host="redis", port=6379)
 
 
 def get_hit_count():
     retries = 5
     while True:
         try:
-            return cache.incr('hits')
+            return cache.incr("hits")
         except redis.exceptions.ConnectionError as exc:
             if retries == 0:
                 raise exc
@@ -20,11 +20,11 @@ def get_hit_count():
             time.sleep(0.5)
 
 
-@app.route('/')
+@app.route("/")
 def hello():
     count = get_hit_count()
-    return 'Hola! Esta es la {} vez que me ves.\n'.format(count)
+    return "Hola! Esta es la {} vez que me ves.\n".format(count)
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=80, debug=True)
-
+    app.run(host="0.0.0.0", port=80, debug=True)

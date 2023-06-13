@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:    
+    image: flask-redis
+    restart: always
+    container_name: flask-redis
+    hostname: flask-redis
+    ports:
+      - 8080:80
+
+  redis:    
+    image: redis
+    restart: always
+    container_name: redis
+    hostname: redis
+    ports:
+      - 6379:6379
